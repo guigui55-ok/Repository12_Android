@@ -1,0 +1,43 @@
+https://qiita.com/tkhskt/items/f354a7da6c6270107f62
+
+
+UI実装の準備
+AndroidManifest.xml
+
+
+今回作成するアプリでは、インターネット上にある画像を表示します。
+インターネット通信を使用するAndroidアプリでは、AndroidManifest.xmlに設定を追加する必要があります。(インターネット通信を使用しないアプリでは設定不要です)
+<uses-permission android:name="android.permission.INTERNET" />
+↑これを追加しましょう
+
+************
+app/build.gradleにviewBindingの設定を追加することで、UIの実装が楽に
+app/build.gradle
+viewBinding {
+        enabled = true
+    }
+
+**********
+今回作成するアプリでは、画像読み込み用のライブラリを使用するための設定もapp/build.gradleに追加
+dependencies {
+    ...
++    implementation 'io.coil-kt:coil:1.0.0' // 追加
+}
+
+
+***************
+activity_main.xmlの編集
+
+
+（2022の記事　-20240112閲覧）
+つい最近、Jetpack ComposeというKotlinでアプリのUIを実装する技術が登場しまして、Androidアプリ開発におけるUI実装のスタンダードが変わりつつありますが、この記事ではXMLを使った従来の方法で実装します。Jetpack Compose版の記事も気が向いたら書きます。
+
+
+ホーム画面のレイアウトはapp/src/main/res/activity_main.xmlで実装します。
+
+
+
+
+
+
+

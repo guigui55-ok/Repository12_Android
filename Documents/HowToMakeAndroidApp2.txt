@@ -1,0 +1,221 @@
+NewProject
+Button Navigation Activity
+
+Name : Sample Application01
+Package name:com.example.sampleapplication01
+
+C:\Users\OK\AndroidStudioProjects\SampleApplication01
+>>
+C:\Users\OK\source\repos\Repository12_AndroidStudio\SampleApplication01
+
+Language Java
+
+Minimum SDK : API 24:Android 7.0 (Nougat)
+
+Finish Button
+
+
+
+
+*******************
+実装する機能はざっくりこんな感じです。シンプルですね。
+
+記事のリスト表示
+記事の検索
+技術的なポイントは
+
+Web APIからのデータ取得
+リスト表示
+画像読み込み
+画面遷移
+
+
+************
+https://qiita.com/tkhskt/items/084e451c9ba5c9c1cf21
+
+Android Studioの使い方
+パッケージ作成 　 New→Packageでパッケージ(ディレクトリ)を作成できます
+ファイル作成 　　 ソースファイルなど
+ログの見方　　　　Android Studioの下部にある、「Logcat」というタブ
+　ログにはVerbose、Debug、Errorなどのレベルが存在
+
+
+
+
+エミュレータ/開発端末の設定
+エミュレータを利用する場合の設定
+Android Studioの右上に表示されているDevice Managerをクリックし、表示されたDevice Manager上にあるCreate Deviceをクリックします。
+　　任意の端末を選択し、Next
+　　任意のバージョンを選択　→　Finish
+
+
+お手持ちの端末を利用する場合の設定
+　「開発者向けオプション」ページに移動　「USBデバッグ」をON
+　　端末と開発用PCを接続し、Android Studioの上部に、接続した端末が表示されていれば準備完了
+
+■エミュレータのデバイスを設定する
+※エミュレータ軌道で　HAXM　のインストールを促される→インストール
+
+01/11 06:45:04: Launching 'app' on Pixel 5 API 30.
+Error while waiting for device: Retry after fixing problem by hand
+
+APILevelを下げたPixcel5をインストール
+　SDK Componentをインストール
+
+HAXMのインストールに失敗する場合
+Hyper-Vのチェックを外して無効化。
+
+SystemImageをNougat arm64-v8a に変更
+
+
+********
+Hyper-Vを利用
+Windows 10/11では、Hyper-Vを有効にしてAndroid Emulatorを動作させることも可能です。
+手順：
+Hyper-Vを有効化。
+「SDK Manager」から Android Emulator Hypervisor Driver for AMD Processors をインストール。
+
+SDK Tools 追加インストール
+Android SDK Platform-Tools: version 35.0.2
+Android Emulator: version 35.3.11
+Android SDK Command-line Tools(lastest):version 17.0
+Android Emulator hypervisor driver(installer): version 2.2.0
+Intel x86 Emulator Accelarator(HAXM installer) - Deprecated : version 7.6.5
+
+
+
+
+
+Parsing C:\Users\OK\AppData\Local\Android\Sdk\system-images\android-30\google_atd\x86\package.xml
+Parsing C:\Users\OK\AppData\Local\Android\Sdk\tools\package.xml
+Android SDK is up to date.
+Running Intel® HAXM installer
+Intel HAXM installation failed!
+For more details, please check the installation log: C:\Users\OK\AppData\Local\Temp\haxm_install-20250111_0750.log
+Intel® HAXM installation failed. To install Intel® HAXM follow the instructions found at: https://github.com/intel/haxm/wiki/Installation-Instructions-on-Windows
+Done
+
+
+
+Hpervisor Driver
+
+Android SDK is up to date.
+Unable to install Android Emulator Hypervisor Driver for AMD Processors
+HAXM can only be installed on Windows.
+Please file a bug against Android Studio.
+Done
+
+
+PCのBIOS/UEFIにアクセスします。
+Intel Virtualization Technology（またはAMD Virtualization Technology）を「有効」に設定。
+
+VT有効に変更
+　　→ARMのエミュレーターが起動しなくなる（起動後エラーとなる）
+
+
+関連
+検索：Intel HAXM installation failed!
+https://qiita.com/rice_rice_rice/items/c00f1338b173a149fb28
+
+
+*************
+https://qiita.com/keicha_hrs/items/455ee2f2cef36e9c6e1c
+Windowsの機能の有効化または無効化」
+「Windowsハイパーバイザープラットフォーム」
+
+
+*****
+X86イメージに変更
+
+************
+https://learn.microsoft.com/ja-jp/dotnet/maui/android/emulator/hardware-acceleration?view=net-maui-9.0
+https://github.com/google/android-emulator-hypervisor-driver/releases
+
+
+*************
+UEFI CPI Configuration > VTX を変更
+VT-dではない
+　→Pixcel5エミュレーター起動、ビルド可能を確認
+　→実機USB接続、デバッグモードでもビルドを確認
+
+***********
+ちなみにCPUは Intel Core i7-6700K、マザーボードはH110M-A-M.2 を使用していますが、Windowsタスクマネージャー内のパフォーマンスタブ内には「仮想化：無効」となっています。これは正しい設定でしょうか？
+マザーボードの設定はVT-d：Enable としています。
+
+ChatGPT:
+ChatGPT
+Windows タスクマネージャーのパフォーマンス タブで「仮想化：無効」と表示されている場合、HAXM が正常に機能しない可能性が高いです。これは、CPU の仮想化支援技術（VT-x）が無効になっている、または正しく認識されていないことを意味します。
+
+お使いの環境（Intel Core i7-6700K と H110M-A-M.2）では、以下の点を確認してください：
+
+1. VT-x の有効化を確認
+VT-d は I/O 仮想化（デバイス用）であり、HAXM が必要とする VT-x（CPU 仮想化）とは別の機能です。BIOS/UEFI 設定で VT-x が無効化されている可能性があります。
+
+手順：
+BIOS/UEFI 設定を確認
+
+PC を再起動し、BIOS/UEFI 設定に入ります（通常は Del または F2 キー）。
+VT-x を探す
+
+メニュー内の「Advanced」や「CPU Configuration」の項目を確認し、以下の設定を探します：
+Intel Virtualization Technology
+VT-x または Intel VT
+VT-x を有効にする
+
+VT-x が無効になっている場合、有効（Enabled）に設定します。
+変更を保存して再起動
+
+設定を保存（通常は F10 キー）して BIOS を終了し、PC を再起動します。
+2. Windows での Hyper-V の競合を確認
+Windows の Hyper-V 機能が有効になっていると、VT-x が HAXM によって使用されないことがあります。Hyper-V を無効にしてみてください。
+
+手順：
+Hyper-V を無効化
+
+Windows の「設定」 > 「アプリ」 > 「オプション機能」 > 「Windows の機能の有効化または無効化」を開きます。
+「Hyper-V」にチェックが入っている場合は外して無効化します。
+PC を再起動します。
+仮想化の状態を確認
+
+タスクマネージャーの「パフォーマンス」タブで、「仮想化」が「有効」になっているか確認します。
+3. HAXM がインストール済みか再確認
+仮想化が有効になったら、HAXM を再インストールして正しく動作するか確認します。
+
+手順：
+Android Studio の SDK Manager を開きます。
+SDK Tools タブから「Intel x86 Emulator Accelerator (HAXM installer)」を再インストールします。
+HAXM のサービス状態を再確認：
+cmd
+コードをコピーする
+sc query intelhaxm
+4. BIOS の VT-x オプションが表示されない場合
+一部の BIOS 設定では VT-x オプションが非表示のことがあります。この場合、BIOS を最新バージョンにアップデートすることで問題が解決する可能性があります。
+ASUS のマザーボードの場合、ASUS の公式ウェブサイトから最新の BIOS ファームウェアをダウンロードしてください。
+5. タスクマネージャーで仮想化が有効にならない場合の次のステップ
+Windows が VT-x を認識しない場合は、以下を確認してください：
+セキュアブートが有効になっているか（BIOS で確認）。
+Windows のインストールが正しく行われているか（仮想化ドライバが競合していないか）。
+これらの手順を試した後でも「仮想化：無効」のままの場合、詳細な状況をお知らせいただければさらに調査を進めます。
+
+
+***************
+
+######
+ビルド、APKビルド、bundle.gradleを設定
+
+C:\Users\OK\source\repos\Repository12_AndroidStudio\SampleApplication01\app
+
+ビルド実行
+
+ビルド中はLogcatに
+ビルド結果はBuildタブやRunタブに　内容詳細が出力される
+
+実機へはUSB接続でファイルコピー、実機でapkを実行するとアプリがインストールされる
+
+
+
+
+
+
+
+
