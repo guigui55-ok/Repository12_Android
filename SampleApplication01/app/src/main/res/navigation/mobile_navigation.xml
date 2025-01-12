@@ -22,4 +22,10 @@
         android:name="com.example.sampleapplication01.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_count_up"
+        android:name="com.example.sampleapplication01.ui.countup.CountUpFragment"
+        android:label="CountUpDown"
+        tools:layout="@layout/fragment_count_up" />
 </navigation>
