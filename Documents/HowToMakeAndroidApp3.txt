@@ -36,6 +36,13 @@ activity_main.xmlの編集
 ホーム画面のレイアウトはapp/src/main/res/activity_main.xmlで実装します。
 
 
+**************
+250113
+apkファイル名は変更できない
+　（ビルド後に手動で変更？）
+
+
+
 
 
 

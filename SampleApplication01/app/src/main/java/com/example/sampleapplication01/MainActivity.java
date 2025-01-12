@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
         //val navController = findNavController(R.id.nav_host_fragment_activity_main)
         //navController.navigate(R.id.navigation_count_up);
-        Log.d(TAG, "アプリが起動しました");        // CountUpFragment に直接遷移 (オプション)
-
+        Log.d(TAG, "アプリが起動しました");
+        // CountUpFragment に直接遷移 (オプション)
         //navController.navigate(R.id.navigation_count_up);
 
 
