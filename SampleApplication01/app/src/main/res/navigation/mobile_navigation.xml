@@ -28,4 +28,10 @@
         android:name="com.example.sampleapplication01.ui.countup.CountUpFragment"
         android:label="CountUpDown"
         tools:layout="@layout/fragment_count_up" />
+
+    <fragment
+        android:id="@+id/navigation_temp"
+        android:name="com.example.sampleapplication01.ui.temp_screen.FragmentTemp"
+        android:label="Temp Screen"
+        tools:layout="@layout/fragment_temp" />
 </navigation>

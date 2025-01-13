@@ -19,4 +19,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ガイドライン: 画面上部から20% -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.2"
+        android:orientation="horizontal" />
+
+    <!-- ボタン -->
+    <Button
+        android:id="@+id/button_other_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Other Screen"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <!-- ボタン -->
+    <Button
+        android:id="@+id/button_browser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Browser"
+        app:layout_constraintTop_toBottomOf="@id/button_other_screen"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,7 @@ import android.util.Log;
 //import androidx.lifecycle.ViewModelProvider;
 
 import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,5 +65,13 @@ public class MainActivity extends AppCompatActivity {
         //sharedViewModel.setSharedValue(100);
     }
 
+    // フラグメントを置き換えるメソッド
+    public void replaceFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.nav_host_fragment_activity_main, fragment)
+                .addToBackStack(null) // 戻るボタンで前のフラグメントに戻れるようにする
+                .commit();
+    }
 }
 

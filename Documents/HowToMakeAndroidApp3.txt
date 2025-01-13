@@ -43,6 +43,21 @@ apkファイル名は変更できない
 
 
 
+***
+250113
+よく使いそうなFragmentテンプレート
+FullScreen
+GoogleMaps
+ModalBottomSheet（類似・例：SNSで送る、～で開くなど）
+ScrollingFragment（横スクロールするメニューなど）
+SettingsFragment（Andoid設定のような設定画面）
+
+
+
+
+
+
+
 
 
 
